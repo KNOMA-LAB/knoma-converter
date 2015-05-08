@@ -4,7 +4,7 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-import time
+from datetime import datetime
 import os
 from knoma_converter_ui import Ui_MainWindow
 import subprocess
@@ -31,11 +31,12 @@ def converte():
     outpath = ui.lineEdit_2.text()
 
     ui.progressBar.setRange(0,100)
-    #ui.label_message.setText("Convertendo")
+    ui.plainTextEdit.clear()
+    ui.plainTextEdit.appendPlainText("Iniciando conversão em {}".format(datetime.now()))
     files = os.listdir(inpath)
     # Let's pick only the images from the directory
     print(files)
-    files = list(filter(lambda x: x[-4].lower not in ['ptif','.tif','.jpg','.png','.bmp','.gif'], files))
+    files = list(filter(lambda x: x[-4:].lower() in ['ptif', '.tif', '.jpg', '.png', '.bmp', '.gif'], files))
     print(files)
     count = 1
     for f in files:
@@ -43,12 +44,22 @@ def converte():
         namecomponents[-1] = extension
         outf = '.'.join(namecomponents)
 
-        ui.plainTextEdit.appendPlainText("Convertendo {} para {}\n".format(f,outf))
-        # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
-        command = "convert '{}' -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:{}'".format(
+        ui.plainTextEdit.appendPlainText("Convertendo {} para {}".format(
             os.path.join(inpath,f),
             os.path.join(outpath,outf)
-        )
+        ))
+        if extension == 'ptif':
+            # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
+            command = "convert '{}' -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:{}'".format(
+                os.path.join(inpath, f),
+                os.path.join(outpath, outf)
+            )
+        elif extension == 'jp2':
+            # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
+            command = "convert '{}' '{}'".format(
+                os.path.join(inpath, f),
+                os.path.join(outpath, outf)
+            )
         #TODO: change call to not use shell
         output = subprocess.check_output(command, shell=True)
         #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
@@ -56,6 +67,7 @@ def converte():
         ui.progressBar.setValue(int(count*100/len(files)))
 
         count += 1
+    ui.plainTextEdit.appendPlainText("Conversão concluída em {}".format(datetime.now()))
     #ui.label_message.setText("Concluído")
 
 app = QtWidgets.QApplication(sys.argv)

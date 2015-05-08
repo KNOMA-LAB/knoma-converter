@@ -105,7 +105,7 @@
       <property name="title">
        <string>Conversão</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -164,8 +164,26 @@
          <x>0</x>
          <y>90</y>
          <width>701</width>
-         <height>329</height>
+         <height>141</height>
         </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>10</height>
+        </size>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="lineWrapMode">
+        <enum>QPlainTextEdit::NoWrap</enum>
        </property>
        <property name="readOnly">
         <bool>true</bool>
