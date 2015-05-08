@@ -22,9 +22,13 @@ def selectOutFile():
 def converte():
     ui.progressBar.setRange(0,100)
     ui.label_message.setText("Convertendo")
-    for i in range(0,101,20):
-        ui.progressBar.setValue(i)
-        time.sleep(1)
+    files = os.listdir(ui.lineEdit.text())
+    count = 1
+    for f in files:
+        print(f,count/len(files))
+        ui.progressBar.setValue(int(count*100/len(files)))
+        ui.label_message.setText(f)
+        count += 1
     ui.label_message.setText("Concluído")
 
 app = QtWidgets.QApplication(sys.argv)
@@ -34,8 +38,8 @@ ui = Ui_MainWindow()
 ui.setupUi(window)
 
 ui.label_message.setText("Inativo")
-ui.lineEdit.setText(os.path.join(__file__,"input"))
-ui.lineEdit_2.setText(os.path.join(__file__,"output"))
+ui.lineEdit.setText(os.path.join(os.path.dirname(__file__),"input"))
+ui.lineEdit_2.setText(os.path.join(os.path.dirname(__file__),"output"))
 
 ui.pushButton.clicked.connect(selectInFile)
 ui.pushButton_2.clicked.connect(selectOutFile)
