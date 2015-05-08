@@ -7,7 +7,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import time
 import os
 from knoma_converter_ui import Ui_MainWindow
-
+import subprocess
+import re
 
 def selectInFile():
     dirname = QtWidgets.QFileDialog.getExistingDirectory()
@@ -20,14 +21,40 @@ def selectOutFile():
         ui.lineEdit_2.setText(dirname)
 
 def converte():
+    if ui.radioButton_2.isChecked():
+        extension = 'ptif'
+    else:
+        extension = 'jp2'
+
+    #TODO: CHECK EXISTENCE
+    inpath = ui.lineEdit.text()
+    outpath = ui.lineEdit_2.text()
+
     ui.progressBar.setRange(0,100)
     ui.label_message.setText("Convertendo")
-    files = os.listdir(ui.lineEdit.text())
+    files = os.listdir(inpath)
+    # Let's pick only the images from the directory
+    print(files)
+    files = list(filter(lambda x: x[-4].lower not in ['ptif','.tif','.jpg','.png','.bmp','.gif'], files))
+    print(files)
     count = 1
     for f in files:
-        print(f,count/len(files))
+        namecomponents=f.split('.')
+        namecomponents[-1] = extension
+        outf = '.'.join(namecomponents)
+
+        ui.label_message.setText("Convertendo {} para {}".format(f,outf))
+        # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
+        command = "convert {} -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:{}'".format(
+            os.path.join(inpath,f),
+            os.path.join(outpath,outf)
+        )
+        #TODO: change call to not use shell
+        output = subprocess.check_output(command, shell=True)
+        #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
+        #                 '-compress', 'jpeg',"'ptif:%s'"% os.path.join(outpath,outf) ])
         ui.progressBar.setValue(int(count*100/len(files)))
-        ui.label_message.setText(f)
+
         count += 1
     ui.label_message.setText("Concluído")
 
