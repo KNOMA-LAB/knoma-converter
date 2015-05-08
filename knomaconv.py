@@ -31,7 +31,7 @@ def converte():
     outpath = ui.lineEdit_2.text()
 
     ui.progressBar.setRange(0,100)
-    ui.label_message.setText("Convertendo")
+    #ui.label_message.setText("Convertendo")
     files = os.listdir(inpath)
     # Let's pick only the images from the directory
     print(files)
@@ -43,9 +43,9 @@ def converte():
         namecomponents[-1] = extension
         outf = '.'.join(namecomponents)
 
-        ui.label_message.setText("Convertendo {} para {}".format(f,outf))
+        ui.plainTextEdit.appendPlainText("Convertendo {} para {}\n".format(f,outf))
         # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
-        command = "convert {} -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:{}'".format(
+        command = "convert '{}' -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:{}'".format(
             os.path.join(inpath,f),
             os.path.join(outpath,outf)
         )
@@ -56,7 +56,7 @@ def converte():
         ui.progressBar.setValue(int(count*100/len(files)))
 
         count += 1
-    ui.label_message.setText("Concluído")
+    #ui.label_message.setText("Concluído")
 
 app = QtWidgets.QApplication(sys.argv)
 window = QtWidgets.QMainWindow()
@@ -64,7 +64,6 @@ window = QtWidgets.QMainWindow()
 ui = Ui_MainWindow()
 ui.setupUi(window)
 
-ui.label_message.setText("Inativo")
 ui.lineEdit.setText(os.path.join(os.path.dirname(__file__),"input"))
 ui.lineEdit_2.setText(os.path.join(os.path.dirname(__file__),"output"))
 
