@@ -35,9 +35,9 @@ def converte():
     ui.plainTextEdit.appendPlainText("Iniciando conversão em {}".format(datetime.now()))
     files = os.listdir(inpath)
     # Let's pick only the images from the directory
-    print(files)
+
     files = list(filter(lambda x: x[-4:].lower() in ['ptif', '.tif', '.jpg', '.png', '.bmp', '.gif'], files))
-    print(files)
+
     count = 1
     for f in files:
         namecomponents=f.split('.')
