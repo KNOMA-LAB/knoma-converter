@@ -53,7 +53,7 @@ def converte():
             command = 'convert "{}" -define tiff:tile-geometry=256x256 -compress jpeg "ptif:{}"'.format(
                 os.path.join(inpath, f), os.path.join(outpath, outf)
             )
-            print(command)
+
         elif extension == 'jp2':
             # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
             command = 'convert "{}" "{}"'.format(
