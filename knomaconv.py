@@ -50,13 +50,13 @@ def converte():
         ))
         if extension == 'ptif':
             # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
-            command = "convert '{}' -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:{}'".format(
-                os.path.join(inpath, f),
-                os.path.join(outpath, outf)
+            command = 'convert "{}" -define tiff:tile-geometry=256x256 -compress jpeg "ptif:{}"'.format(
+                os.path.join(inpath, f), os.path.join(outpath, outf)
             )
+            print(command)
         elif extension == 'jp2':
             # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
-            command = "convert '{}' '{}'".format(
+            command = 'convert "{}" "{}"'.format(
                 os.path.join(inpath, f),
                 os.path.join(outpath, outf)
             )
@@ -76,8 +76,8 @@ window = QtWidgets.QMainWindow()
 ui = Ui_MainWindow()
 ui.setupUi(window)
 
-ui.lineEdit.setText(os.path.join(os.path.dirname(__file__),"input"))
-ui.lineEdit_2.setText(os.path.join(os.path.dirname(__file__),"output"))
+# ui.lineEdit.setText(os.path.join(os.path.join(os.path.split(os.path.dirname(__file__))),"input"))
+#ui.lineEdit_2.setText(os.path.join(os.path.join(os.path.split(os.path.dirname(__file__))),"output"))
 
 ui.pushButton.clicked.connect(selectInFile)
 ui.pushButton_2.clicked.connect(selectOutFile)
