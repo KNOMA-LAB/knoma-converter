@@ -22,7 +22,7 @@ def selectOutFile():
 
 def converte():
     if ui.radioButton_2.isChecked():
-        extension = 'ptif'
+        extension = 'tif'
     elif ui.radioButton_3.isChecked():
         extension = 'jpg'
     elif ui.radioButton.isChecked():
@@ -50,7 +50,7 @@ def converte():
             os.path.join(inpath,f),
             os.path.join(outpath,outf)
         ))
-        if extension == 'ptif':
+        if extension == 'tif':
             # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
             command = 'convert "{}" -define tiff:tile-geometry=256x256 -compress jpeg "ptif:{}"'.format(
                 os.path.join(inpath, f), os.path.join(outpath, outf)
