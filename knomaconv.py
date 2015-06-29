@@ -45,7 +45,8 @@ def converte():
 
     count = 1
     for f in files:
-        namecomponents=f.split('.')
+
+        namecomponents=os.path.basename(f).split('.')
         namecomponents[-1] = extension
         outf = '.'.join(namecomponents)
 
