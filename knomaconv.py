@@ -11,9 +11,14 @@ import subprocess
 import re
 
 def selectInFile():
-    dirname = QtWidgets.QFileDialog.getExistingDirectory()
+    fileDialog = QtWidgets.QFileDialog()
+
+    dirname = fileDialog.getOpenFileNames(caption='Selectione as imagens a converter',
+                                          filter='Imagens (*.jpg *.png *.gif *.tif)'
+                                          )
+
     if dirname:
-        ui.lineEdit.setText(dirname)
+        ui.lineEdit.setText(';'.join(dirname[0]))
 
 def selectOutFile():
     dirname = QtWidgets.QFileDialog.getExistingDirectory()
@@ -33,10 +38,8 @@ def converte():
     ui.progressBar.setRange(0,100)
     ui.plainTextEdit.clear()
     ui.plainTextEdit.appendPlainText("Iniciando conversão em {}".format(datetime.now()))
-    files = os.listdir(inpath)
+    files = inpath.split(';')
     # Let's pick only the images from the directory
-
-    files = list(filter(lambda x: x[-4:].lower() in ['ptif', '.tif', '.jpg', '.png', '.bmp', '.gif'], files))
 
     count = 1
     for f in files:
