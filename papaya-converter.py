@@ -16,7 +16,6 @@ def selectInThumbFile():
     dirname = fileDialog.getOpenFileNames(caption='Selectione a imagem para Thumbnail',
                                           filter='Imagens (*.jp2 *.jpg *.png *.gif *.tif)'
                                           )
-
     if dirname:
         ui.lineEdit_3.setText(';'.join(dirname[0]))
 
@@ -118,7 +117,7 @@ def makethumb():
 
     ui.plainTextEdit_2.appendPlainText("Fazendo thumbnail de {} em {}".format(path, outf))
 
-    command = 'convert "{}" -thumbnail 160x160^ -gravity center -extent 160x160 "{}"'.format( path, outf )
+    command = 'convert "{}" -thumbnail "160x160^" -gravity center -extent 160x160 "{}"'.format( path, outf )
     #TODO: change call to not use shell
     output = subprocess.check_output(command, shell=True)
     #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
