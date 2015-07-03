@@ -180,7 +180,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "KNOMA Image Converter"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Papaya Image Converter"))
         self.groupBox.setTitle(_translate("MainWindow", "Pastas"))
         self.label.setText(_translate("MainWindow", "Entrada"))
         self.label_2.setText(_translate("MainWindow", "Saída"))
