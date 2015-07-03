@@ -43,7 +43,7 @@ def converte():
         extension = 'jpg'
     elif ui.radioButton.isChecked():
         extension = 'jp2'
-        quality = 45
+        quality = ui.spinBox.value()
     elif ui.radioButton_4.isChecked():
         extension = 'jp2'
         quality = 100
@@ -92,7 +92,7 @@ def converte():
                 os.path.join(outpath, outf)
             )
         #TODO: change call to not use shell
-        ui.plainTextEdit.appendPlainText("comando: {}".format(command))
+
         output = subprocess.check_output(command, shell=True)
         #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
         #                 '-compress', 'jpeg',"'ptif:%s'"% os.path.join(outpath,outf) ])
@@ -116,14 +116,14 @@ def makethumb():
     namecomponents[-2] = namecomponents[-2] + '-thumb'
     outf = '.'.join(namecomponents)
 
-    ui.plainTextEdit.appendPlainText("Fazendo thumbnail de {} em {}".format(path,outf))
+    ui.plainTextEdit_2.appendPlainText("Fazendo thumbnail de {} em {}".format(path, outf))
 
     command = 'convert "{}" -thumbnail 160x160^ -gravity center -extent 160x160 "{}"'.format( path, outf )
     #TODO: change call to not use shell
     output = subprocess.check_output(command, shell=True)
     #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
     #                 '-compress', 'jpeg',"'ptif:%s'"% os.path.join(outpath,outf) ])
-    ui.plainTextEdit.appendPlainText("Conversão concluída em {}".format(datetime.now()))
+    ui.plainTextEdit_2.appendPlainText("Conversão concluída em {}".format(datetime.now()))
 
 
 app = QtWidgets.QApplication(sys.argv)

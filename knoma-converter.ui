@@ -97,6 +97,9 @@
               <layout class="QVBoxLayout" name="verticalLayout">
                <item>
                 <widget class="QPushButton" name="pushButton">
+                 <property name="toolTip">
+                  <string>seleciona arquivos para serem convertidos</string>
+                 </property>
                  <property name="text">
                   <string>Seleciona</string>
                  </property>
@@ -104,6 +107,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="pushButton_2">
+                 <property name="toolTip">
+                  <string>seleciona pasta de destino da conversão</string>
+                 </property>
                  <property name="text">
                   <string>Seleciona</string>
                  </property>
@@ -185,20 +191,37 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton">
-                   <property name="toolTip">
-                    <string>JPEG 2000 com fator de qualidade 45% (ideal para scans de texto)</string>
-                   </property>
-                   <property name="text">
-                    <string>JPEG2K</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                   <attribute name="buttonGroup">
-                    <string notr="true">buttonGroup</string>
-                   </attribute>
-                  </widget>
+                  <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <item>
+                    <widget class="QRadioButton" name="radioButton">
+                     <property name="toolTip">
+                      <string>JPEG 2000 com fator de qualidade configurável</string>
+                     </property>
+                     <property name="text">
+                      <string>JPEG2K</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                     <attribute name="buttonGroup">
+                      <string notr="true">buttonGroup</string>
+                     </attribute>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QSpinBox" name="spinBox">
+                     <property name="toolTip">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Qualidade da compressão (1-99): &lt;/p&gt;&lt;p&gt;Quanto menor o valor, menor o tamanho do arquivo resultante, porém maior a distorção na imagem.&lt;/p&gt;&lt;p&gt;O valor ideal depende da foto sendo comprimida, na dúvida, use o valor padrão.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                     <property name="minimum">
+                      <number>1</number>
+                     </property>
+                     <property name="value">
+                      <number>45</number>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                  <item>
                   <widget class="QRadioButton" name="radioButton_4">
