@@ -6,7 +6,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from datetime import datetime
 import os
-from knoma_converter_ui import Ui_MainWindow
+from papaya_converter_ui import Ui_MainWindow
 import subprocess
 import re
 

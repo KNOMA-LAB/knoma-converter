@@ -9,7 +9,7 @@ import sys
 base = 'Win32GUI' if sys.platform == 'win32' else None
 
 executables = [
-    Executable('knomaconv.py', base=base)
+    Executable('papaya-converter.py', base=base)
 ]
 
 setup(name='knoma-converter',
