@@ -14,7 +14,7 @@ def selectInThumbFile():
     fileDialog = QtWidgets.QFileDialog()
 
     dirname = fileDialog.getOpenFileNames(caption='Selectione a imagem para Thumbnail',
-                                          filter='Imagens (*.jpg *.png *.gif *.tif)'
+                                          filter='Imagens (*.jp2 *.jpg *.png *.gif *.tif)'
                                           )
 
     if dirname:
