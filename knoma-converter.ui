@@ -73,6 +73,9 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="toolTip">
+                  <string>Arquivos a serem convertidos</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -82,6 +85,9 @@
                 <widget class="QLineEdit" name="lineEdit_2">
                  <property name="enabled">
                   <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Diretório de Saída da conversão</string>
                  </property>
                 </widget>
                </item>
@@ -128,6 +134,9 @@
                  <height>10</height>
                 </size>
                </property>
+               <property name="toolTip">
+                <string>Janela de Mensagens da Conversão</string>
+               </property>
                <property name="verticalScrollBarPolicy">
                 <enum>Qt::ScrollBarAlwaysOn</enum>
                </property>
@@ -145,11 +154,17 @@
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
                   <widget class="QRadioButton" name="radioButton_2">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>TIF em múltiplas camadas, ideal para fotos de centenas de megapixels</string>
+                   </property>
                    <property name="text">
                     <string>TIF piramidal</string>
                    </property>
                    <property name="checked">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">buttonGroup</string>
@@ -158,6 +173,9 @@
                  </item>
                  <item>
                   <widget class="QRadioButton" name="radioButton_3">
+                   <property name="toolTip">
+                    <string>Formato JPEG</string>
+                   </property>
                    <property name="text">
                     <string>JPEG</string>
                    </property>
@@ -168,8 +186,27 @@
                  </item>
                  <item>
                   <widget class="QRadioButton" name="radioButton">
+                   <property name="toolTip">
+                    <string>JPEG 2000 com fator de qualidade 45% (ideal para scans de texto)</string>
+                   </property>
                    <property name="text">
-                    <string>JPEG2000</string>
+                    <string>JPEG2K</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                   <attribute name="buttonGroup">
+                    <string notr="true">buttonGroup</string>
+                   </attribute>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton_4">
+                   <property name="toolTip">
+                    <string>JPEG sem compressão (ideal para imagens com detalhes, como fotos)</string>
+                   </property>
+                   <property name="text">
+                    <string>JPEG2K (lossless)</string>
                    </property>
                    <attribute name="buttonGroup">
                     <string notr="true">buttonGroup</string>
@@ -187,6 +224,9 @@
                </item>
                <item>
                 <widget class="QPushButton" name="pushButton_go">
+                 <property name="toolTip">
+                  <string>Inicia Conversão</string>
+                 </property>
                  <property name="text">
                   <string>Converte</string>
                  </property>
@@ -206,6 +246,9 @@
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="1" column="0">
            <widget class="QPushButton" name="pushButton_4">
+            <property name="toolTip">
+             <string>Gera uma miniatura 160x160 da imagem selecionada</string>
+            </property>
             <property name="text">
              <string>Gera Thumbnail</string>
             </property>
@@ -221,10 +264,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineEdit_3"/>
+             <widget class="QLineEdit" name="lineEdit_3">
+              <property name="toolTip">
+               <string>Imagem para geração automática de miniatura (thumbnail)</string>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_3">
+              <property name="toolTip">
+               <string>Seleciona imagem para geração de miniatura (thumbnail)</string>
+              </property>
               <property name="text">
                <string>Seleciona</string>
               </property>
@@ -233,7 +283,11 @@
            </layout>
           </item>
           <item row="2" column="0">
-           <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+           <widget class="QPlainTextEdit" name="plainTextEdit_2">
+            <property name="toolTip">
+             <string>Janela de Mensagens da Geração da Miniatura)</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -249,7 +303,7 @@
      <x>0</x>
      <y>0</y>
      <width>844</width>
-     <height>27</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -7,7 +7,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from datetime import datetime
 import os
 from knoma_converter_ui import Ui_MainWindow
-from knoma_about_ui import Ui_Dialog
 import subprocess
 import re
 
@@ -44,7 +43,10 @@ def converte():
         extension = 'jpg'
     elif ui.radioButton.isChecked():
         extension = 'jp2'
-
+        quality = 45
+    elif ui.radioButton_4.isChecked():
+        extension = 'jp2'
+        quality = 100
     #TODO: CHECK EXISTENCE
     inpath = ui.lineEdit.text()
     outpath = ui.lineEdit_2.text()
@@ -73,17 +75,24 @@ def converte():
             )
 
         elif extension == 'jp2':
-            # convert infile -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:o.tif'
-            command = 'convert "{}" "{}"'.format(
+            if quality == 100:
+                qualitystr = ''
+            else:
+                qualitystr = "-quality {}".format(quality)
+
+            command = 'convert "{}" {} "{}"'.format(
                 os.path.join(inpath, f),
+                qualitystr,
                 os.path.join(outpath, outf)
             )
+
         elif extension == 'jpg':
             command = 'convert "{}" "{}"'.format(
                 os.path.join(inpath, f),
                 os.path.join(outpath, outf)
             )
         #TODO: change call to not use shell
+        ui.plainTextEdit.appendPlainText("comando: {}".format(command))
         output = subprocess.check_output(command, shell=True)
         #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
         #                 '-compress', 'jpeg',"'ptif:%s'"% os.path.join(outpath,outf) ])
