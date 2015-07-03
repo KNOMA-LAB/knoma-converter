@@ -119,6 +119,7 @@ def makethumb():
 
     command = 'convert "{}" -thumbnail "160x160^" -gravity center -extent 160x160 "{}"'.format( path, outf )
     #TODO: change call to not use shell
+    #ui.plainTextEdit_2.appendPlainText("Comando {}".format(command))
     output = subprocess.check_output(command, shell=True)
     #subprocess.call(["convert",os.path.join(inpath,f),'-define','tiff:tile-geometry=256x256',
     #                 '-compress', 'jpeg',"'ptif:%s'"% os.path.join(outpath,outf) ])
